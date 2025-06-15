@@ -9,11 +9,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <link
-  rel="stylesheet"
-  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  integrity="sha256-sA+e2H1LG4XQ+/RQ2n4Ub3TfVydqfOlnCFyYGe6+60c="
-  crossorigin=""
-/>
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-sA+e2H1LG4XQ+/RQ2n4Ub3TfVydqfOlnCFyYGe6+60c="
+    crossorigin=""
+  />
   <style>
     body {
       margin: 0;
@@ -21,6 +21,7 @@
       background-color: #fff0f5;
       color: #333;
     }
+
     header {
       background-color: #ff69b4;
       color: white;
@@ -30,6 +31,7 @@
       font-weight: 600;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
+
     nav {
       display: flex;
       justify-content: center;
@@ -38,20 +40,30 @@
       padding: 0.5rem 1rem;
       font-weight: 500;
     }
+
     nav a {
       text-decoration: none;
       color: #d63384;
       transition: color 0.3s;
     }
+
     nav a:hover {
       color: #ad1457;
     }
+
     main {
       padding: 2rem;
       max-width: 960px;
       margin: auto;
     }
-  
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #ffe4ec;
+      color: #666;
+    }
+
     .movie-list {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -95,7 +107,6 @@
       color: #666;
     }
 
-  
     .skip-link {
       position: absolute;
       top: -40px;
@@ -114,13 +125,34 @@
 </head>
 <body>
   <a href="#main-content" class="skip-link">Lewati ke Konten</a>
-  <header role="banner">🎬 UpdateDong - Update Ceritamu</header>
+
+  <header role="banner">
+    <h1>🎬 UpdateDong - Update Ceritamu</h1>
+  </header>
+
   <nav role="navigation">
     <a href="#/">Beranda</a>
     <a href="#/add">Tambah Cerita</a>
   </nav>
+
   <main role="main" id="main-content" tabindex="0">
-    <!-- Halaman akan dirender di sini -->
+    <!-- Konten akan dirender lewat JavaScript -->
   </main>
+
+  <footer role="contentinfo">
+    &copy; 2025 UpdateDong
+  </footer>
+
+  <script>
+    const mainContent = document.querySelector("#main-content");
+    const skipLink = document.querySelector(".skip-link");
+
+    skipLink.addEventListener("click", function (event) {
+      event.preventDefault();
+      skipLink.blur();
+      mainContent.focus();
+      mainContent.scrollIntoView();
+    });
+  </script>
 </body>
 </html>

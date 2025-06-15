@@ -6,9 +6,9 @@ export default class AddMovieView {
     async render() {
         return `
       <section class="add-movie-section">
-        <h2>➕ Tambah Film Baru</h2>
+        <h2>➕ Tambah Cerita Baru</h2>
         <form id="movie-form" class="movie-form">
-          <label for="name">Judul Film</label>
+          <label for="name">Judul Cerita</label>
           <input type="text" id="name" name="name" required />
 
           <label for="description">Deskripsi</label>

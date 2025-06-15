@@ -6,9 +6,9 @@ export default class HomeView {
     return `
       <section class="welcome-section">
         <h1>🎬 Selamat datang di <span style="color:#d63384;">UpdateDong</span>!</h1>
-        <p>Temukan dan tambahkan katalog film favoritmu.</p>
+        <p>Temukan dan tambahkan Cerita favoritmu.</p>
         <div id="movie-list" class="movie-list">
-          <p>Loading daftar film...</p>
+          <p>Loading Tampilan Cerita...</p>
         </div>
       </section>
     `;
@@ -23,7 +23,7 @@ export default class HomeView {
   showMovies(movies) {
     const container = document.getElementById('movie-list');
     if (!movies.length) {
-      container.innerHTML = '<p>Belum ada film yang tersedia.</p>';
+      container.innerHTML = '<p>Belum ada cerita yang tersedia.</p>';
       return;
     }
 
