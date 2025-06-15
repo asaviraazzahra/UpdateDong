@@ -1,0 +1,5 @@
+# Jika Anda menggunakan API key (misalnya dari MapTiler), tuliskan di sini.
+# Contoh:
+# MAPTILER_KEY=pk.abcd1234yourkey
+
+# Jika tidak menggunakan key, kosongkan saja file ini.
