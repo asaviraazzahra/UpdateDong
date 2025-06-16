@@ -1,5 +1,7 @@
 import UrlParser from '../routes/url-parser';
 import routes from '../routes/routes';
+import LoginView from '../view/login-view';
+
 
 const App = {
     _cleanup: null,
