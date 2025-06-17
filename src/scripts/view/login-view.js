@@ -1,10 +1,11 @@
+// LoginView.js
 class LoginView {
-  constructor(container) {
-    this.container = container;
-  }
+    constructor(container) {
+        this.container = container;
+    }
 
-  render() {
-    this.container.innerHTML = `
+    async render() {
+        return `
       <section class="login-form">
         <h2>Login</h2>
         <form id="loginForm">
@@ -19,33 +20,45 @@ class LoginView {
         <div id="loginError" style="color:red;"></div>
       </section>
     `;
+    }
 
-    document.getElementById('loginForm').addEventListener('submit', async (event) => {
-      event.preventDefault();
-      const email = event.target.email.value;
-      const password = event.target.password.value;
+    async afterRender() {
+        const loginForm = document.getElementById('loginForm');
+        const loginErrorDiv = document.getElementById('loginError');
 
-      try {
-        const response = await fetch('https://story-api.dicoding.dev/v1/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password })
+        loginForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const email = event.target.email.value;
+            const password = event.target.password.value;
+
+            try {
+                const response = await fetch('https://story-api.dicoding.dev/v1/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password }),
+                });
+
+                const result = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(
+                        result.message || 'Login failed. Please check your credentials.'
+                    );
+                }
+
+                localStorage.setItem('token', result.loginResult.token);
+                alert('Login berhasil!');
+                window.location.hash = '/';
+            } catch (err) {
+                loginErrorDiv.textContent = err.message;
+            }
         });
 
-        const result = await response.json();
-
-        if (!response.ok) throw new Error(result.message);
-
-        // Simpan token ke localStorage
-        localStorage.setItem('token', result.loginResult.token);
-        alert('Login berhasil!');
-        window.location.hash = '/';
-
-      } catch (err) {
-        document.getElementById('loginError').textContent = err.message;
-      }
-    });
-  }
+        return () => {
+            console.log('Cleaning up LoginView...');
+            loginForm.removeEventListener('submit', async (event) => {});
+        };
+    }
 }
 
 export default LoginView;
